@@ -29,11 +29,21 @@ func main() {
 	//flag := os.Args[3]
 
 	// Create the assets/<namespace>/models/item directory if it doesn't exist and move to it.
-	if _, err := os.Stat("assets/" + namespace + "/models/item"); os.IsNotExist(err) {
-		os.MkdirAll("assets/"+namespace+"/models/item", os.ModePerm)
-	}
-	os.Chdir("assets/" + namespace + "/models/item")
+	createDirectory("assets/" + namespace + "/models/item")
 
 	// Write the item model JSON files.
 	writeItemModelJSONs(namespace, resource_name)
+}
+
+/**
+ * Create a directory if it doesn't exist and move to it.
+ *
+ * @param directory The directory to create and move to.
+ */
+func createDirectory(directory string) {
+	// Create the directory if it doesn't exist and move to it.
+	if _, err := os.Stat(directory); os.IsNotExist(err) {
+		os.MkdirAll(directory, os.ModePerm)
+	}
+	os.Chdir(directory)
 }
