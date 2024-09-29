@@ -25,7 +25,7 @@ func writeItemModelJSONs(namespace string, resource_name string) {
  * @param tool_type The type of tool.
  */
 func writeToolModelJson(namespace string, resource_name string, tool_type string) {
-	// Write the axe item model JSON file.
+	// Write the tool item model JSON file.
 	content := "{\n" +
 		"  \"parent\": \"item/handheld\",\n" +
 		"  \"textures\": {\n" +
