@@ -28,16 +28,29 @@ func main() {
 	resource_name := os.Args[2]
 	//flag := os.Args[3]
 
+	// Get the current working directory and save it.
+	current_directory, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	// Create the assets/<namespace>/models/item directory if it doesn't exist and move to it.
 	createDirectory("assets/" + namespace + "/models/item")
 
 	// Write the item model JSON files.
 	writeItemModelJSONs(namespace, resource_name)
 
+	// Reset the current working directory.
+	resetDirectory(current_directory)
+
 	// Create the data/<namespace>/recipes directory if it doesn't exist and move to it.
 	createDirectory("data/" + namespace + "/recipes")
 
 	// Write the recipe JSON files.
+
+	// Reset the current working directory.
+	resetDirectory(current_directory)
 }
 
 /**
@@ -51,4 +64,14 @@ func createDirectory(directory string) {
 		os.MkdirAll(directory, os.ModePerm)
 	}
 	os.Chdir(directory)
+}
+
+/**
+ * Reset the current working directory to the original directory.
+ *
+ * @param current_directory The original directory.
+ */
+func resetDirectory(current_directory string) {
+	// Reset the current working directory.
+	os.Chdir(current_directory)
 }
