@@ -1,4 +1,4 @@
-package minecraftjsonwriter
+package main
 
 import (
 	"fmt"
