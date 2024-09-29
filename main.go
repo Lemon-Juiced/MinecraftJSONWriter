@@ -1,4 +1,4 @@
-package main
+package minecraftjsonwriter
 
 import (
 	"fmt"
@@ -18,12 +18,22 @@ import (
  * @author Lemon_Juiced & TechDahTurtle
  */
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Please provide arguments.")
+	// Check for the correct number of arguments and save them.
+	if len(os.Args) != 4 {
+		fmt.Println("Usage: mcjsonwriter <namespace> <resource_name> <-i, -t, or -c>")
 		return
 	}
 
-	for i, arg := range os.Args[1:] {
-		fmt.Printf("Argument %d: %s\n", i+1, arg)
+	namespace := os.Args[1]
+	resource_name := os.Args[2]
+	//flag := os.Args[3]
+
+	// Create the assets/<namespace>/models/item directory if it doesn't exist and move to it.
+	if _, err := os.Stat("assets/" + namespace + "/models/item"); os.IsNotExist(err) {
+		os.MkdirAll("assets/"+namespace+"/models/item", os.ModePerm)
 	}
+	os.Chdir("assets/" + namespace + "/models/item")
+
+	// Write the item model JSON files.
+	writeItemModelJSONs(namespace, resource_name)
 }
