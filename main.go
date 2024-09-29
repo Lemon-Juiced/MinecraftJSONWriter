@@ -26,7 +26,7 @@ func main() {
 
 	namespace := os.Args[1]
 	resource_name := os.Args[2]
-	//flag := os.Args[3]
+	flag := os.Args[3]
 
 	// Get the current working directory and save it.
 	current_directory, err := os.Getwd()
@@ -48,6 +48,7 @@ func main() {
 	createDirectory("data/" + namespace + "/recipes")
 
 	// Write the recipe JSON files.
+	writeItemRecipeJSONs(namespace, resource_name, flag)
 
 	// Reset the current working directory.
 	resetDirectory(current_directory)

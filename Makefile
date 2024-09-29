@@ -12,7 +12,7 @@ all: build
 
 # Build the executable
 build:
-	$(GO) build -o $(EXECUTABLE_NAME) main.go item_models.go json_writer.go
+	$(GO) build -o $(EXECUTABLE_NAME) main.go item_models.go item_recipes.go json_writer.go
 
 # Clean up
 clean:
