@@ -33,6 +33,11 @@ func main() {
 
 	// Write the item model JSON files.
 	writeItemModelJSONs(namespace, resource_name)
+
+	// Create the data/<namespace>/recipes directory if it doesn't exist and move to it.
+	createDirectory("data/" + namespace + "/recipes")
+
+	// Write the recipe JSON files.
 }
 
 /**
